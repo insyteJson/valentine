@@ -189,11 +189,17 @@
     </div>
 
     <script>
-        // Parse URL parameters
+        // Parse URL parameters (name is base64 encoded)
         const urlParams = new URLSearchParams(window.location.search);
-        const toName = urlParams.get('to');
-        if (toName) {
-            document.getElementById('recipientName').textContent = decodeURIComponent(toName);
+        const encodedName = urlParams.get('n');
+        if (encodedName) {
+            try {
+                const decodedName = atob(encodedName);
+                document.getElementById('recipientName').textContent = decodedName;
+            } catch (e) {
+                // Fallback if not valid base64
+                document.getElementById('recipientName').textContent = encodedName;
+            }
         }
 
         // Create floating hearts background
