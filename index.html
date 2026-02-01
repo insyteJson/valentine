@@ -170,7 +170,7 @@
         <h1><span class="name" id="recipientName">My Love</span>, will you be my valentine? <span id="heartEmoji">💝</span></h1>
 
         <div class="gif-container">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHd5YzBncjE5OHFmYmNkOHhmZnk3cXI4c2g3NWd2dGx6cDR1Y2s5ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lqczWksNBr4HK/giphy.gif" alt="Cute bear with heart" id="mainGif">
+            <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Cute bear with heart" id="mainGif">
         </div>
 
         <div class="buttons">
@@ -183,17 +183,23 @@
     <div class="success-container" id="successContainer">
         <h1>Yaaay! I can't wait! 💖</h1>
         <div class="gif-container">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcnZlN2Yyd2NsNnNhcnk5cWZocG1yNDVqbTJwYXA4eGl5MnZuaWxheCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjHV0z8S7WM4MwnK/giphy.gif" alt="Love celebration">
+            <img src="https://media.giphy.com/media/IzcFv6WJ4310k/giphy.gif" alt="Love celebration">
         </div>
         <p class="footer" style="font-size: 1.5rem; margin-top: 20px;">You just made me the happiest person! 🥰</p>
     </div>
 
     <script>
-        // Parse URL parameters
+        // Parse URL parameters (name is base64 encoded)
         const urlParams = new URLSearchParams(window.location.search);
-        const toName = urlParams.get('to');
-        if (toName) {
-            document.getElementById('recipientName').textContent = decodeURIComponent(toName);
+        const encodedName = urlParams.get('n');
+        if (encodedName) {
+            try {
+                const decodedName = atob(encodedName);
+                document.getElementById('recipientName').textContent = decodedName;
+            } catch (e) {
+                // Fallback if not valid base64
+                document.getElementById('recipientName').textContent = encodedName;
+            }
         }
 
         // Create floating hearts background

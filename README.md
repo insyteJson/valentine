@@ -4,30 +4,35 @@ A cute interactive webpage to ask someone to be your valentine.
 
 ## Usage
 
-Open `index.html` in a browser. Customize the recipient's name using the URL parameter:
+The name is encoded in base64 to keep it hidden in the URL.
+
+### Step 1: Encode the name
+
+In terminal:
+```bash
+echo -n "Name" | base64
+```
+
+Or use an online base64 encoder.
+
+### Step 2: Add to URL
 
 ```
-index.html?to=YourValentine
+index.html?n=ENCODED_NAME
 ```
 
 ### Example
 
-```
-index.html?to=Sarah
+For "Sarah":
+```bash
+echo -n "Sarah" | base64
+# Output: U2FyYWg=
 ```
 
-Displays: **"Sarah, will you be my valentine?"**
-
-For names with spaces, use `%20`:
-
-```
-index.html?to=My%20Love
-```
+URL: `index.html?n=U2FyYWg=`
 
 ### GitHub Pages
 
-If hosted on GitHub Pages, the URL will be:
-
 ```
-https://username.github.io/valentine/?to=Sarah
+https://username.github.io/valentine/?n=U2FyYWg=
 ```
