@@ -23,3 +23,11 @@ For names with spaces, use `%20`:
 ```
 index.html?to=My%20Love
 ```
+
+### GitHub Pages
+
+If hosted on GitHub Pages, the URL will be:
+
+```
+https://username.github.io/valentine/?to=Sarah
+```
