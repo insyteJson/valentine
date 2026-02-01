@@ -178,11 +178,10 @@
             <button class="no-btn" id="noBtn" onclick="sayNo()">No :(</button>
         </div>
 
-        <p class="footer">From <span id="senderName">Your Secret Admirer</span> 💕</p>
-    </div>
+            </div>
 
     <div class="success-container" id="successContainer">
-        <h1>Yaaay! I love you! 💖</h1>
+        <h1>Yaaay! I can't wait! 💖</h1>
         <div class="gif-container">
             <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcnZlN2Yyd2NsNnNhcnk5cWZocG1yNDVqbTJwYXA4eGl5MnZuaWxheCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjHV0z8S7WM4MwnK/giphy.gif" alt="Love celebration">
         </div>
@@ -193,13 +192,8 @@
         // Parse URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const toName = urlParams.get('to');
-        const fromName = urlParams.get('from');
-
         if (toName) {
             document.getElementById('recipientName').textContent = decodeURIComponent(toName);
-        }
-        if (fromName) {
-            document.getElementById('senderName').textContent = decodeURIComponent(fromName);
         }
 
         // Create floating hearts background
