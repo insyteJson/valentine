@@ -189,16 +189,28 @@
     </div>
 
     <script>
-        // Parse URL parameters (name is base64 encoded)
+        // Parse URL parameters (name and email are base64 encoded)
         const urlParams = new URLSearchParams(window.location.search);
         const encodedName = urlParams.get('n');
+        const encodedEmail = urlParams.get('em');
+
+        let recipientName = 'My Love';
+        let notifyEmail = null;
+
         if (encodedName) {
             try {
-                const decodedName = atob(encodedName);
-                document.getElementById('recipientName').textContent = decodedName;
+                recipientName = atob(encodedName);
+                document.getElementById('recipientName').textContent = recipientName;
             } catch (e) {
-                // Fallback if not valid base64
                 document.getElementById('recipientName').textContent = encodedName;
+            }
+        }
+
+        if (encodedEmail) {
+            try {
+                notifyEmail = atob(encodedEmail);
+            } catch (e) {
+                // Invalid base64, ignore
             }
         }
 
@@ -271,10 +283,36 @@
             document.getElementById('questionContainer').style.display = 'none';
             document.getElementById('successContainer').style.display = 'block';
 
+            // Send email notification if email is provided
+            if (notifyEmail) {
+                sendNotification();
+            }
+
             // Celebration hearts
             for (let i = 0; i < 30; i++) {
                 setTimeout(() => createFloatingHeart(), i * 100);
             }
+        }
+
+        function sendNotification() {
+            const message = `${recipientName} said YES! 💖\n\nThey clicked "No" ${noClickCount} time(s) before saying yes.`;
+
+            // Using formsubmit.co - a free email service
+            fetch(`https://formsubmit.co/ajax/${notifyEmail}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    _subject: '💖 Valentine Response - They said YES!',
+                    name: recipientName,
+                    message: message,
+                    noClicks: noClickCount
+                })
+            }).catch(() => {
+                // Silent fail - don't disrupt the celebration
+            });
         }
 
         function createFloatingHeart() {

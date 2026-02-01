@@ -2,37 +2,43 @@
 
 A cute interactive webpage to ask someone to be your valentine.
 
+## URL Parameters
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `n` | Yes | Base64 encoded recipient name |
+| `em` | No | Base64 encoded email for notification |
+
 ## Usage
 
-The name is encoded in base64 to keep it hidden in the URL.
+### Step 1: Encode values
 
-### Step 1: Encode the name
-
-In terminal:
 ```bash
-echo -n "Name" | base64
+# Encode name
+echo -n "Natsi" | base64
+# Output: TmF0c2k=
+
+# Encode email (optional)
+echo -n "you@email.com" | base64
+# Output: eW91QGVtYWlsLmNvbQ==
 ```
 
-Or use an online base64 encoder.
+### Step 2: Build URL
 
-### Step 2: Add to URL
-
+**Without email notification:**
 ```
-index.html?n=ENCODED_NAME
-```
-
-### Example
-
-For "Sarah":
-```bash
-echo -n "Sarah" | base64
-# Output: U2FyYWg=
+https://insytejson.github.io/valentine/?n=TmF0c2k=
 ```
 
-URL: `index.html?n=U2FyYWg=`
-
-### GitHub Pages
-
+**With email notification:**
 ```
-https://username.github.io/valentine/?n=U2FyYWg=
+https://insytejson.github.io/valentine/?n=TmF0c2k=&em=eW91QGVtYWlsLmNvbQ==
 ```
+
+## Email Notification
+
+When `em` parameter is provided:
+- You'll receive an email when they click "Yes"
+- Email includes how many times they clicked "No" first
+
+**Note:** First time using your email, you'll get a confirmation email from formsubmit.co to verify your address.
