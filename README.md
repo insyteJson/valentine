@@ -11,14 +11,7 @@ A cute interactive webpage to ask someone to be your valentine.
 
 ## Quick Start
 
-### Step 1a: Encode the name via Terminal
-
-```bash
-echo -n "Natsi" | base64
-# Output: TmF0c2k=
-```
-
-### Step 1b: Encode the name via Website
+### Step 1: Encode the name via Website
 
 1. Go to https://base64.guru/converter/encode/text
 2. Enter their name under `text*`
@@ -26,6 +19,19 @@ echo -n "Natsi" | base64
 
 ### Step 2: Build URL
 
+BaseURL:
+```
+https://insytejson.github.io/valentine
+```
+
+You need to add the encoded name to this URL: 
+```
+<BaseURL>/?n=<encoded-name>
+```
+
+This will give you the URL you will send to your significant other. 
+
+**Example:** 
 ```
 https://insytejson.github.io/valentine/?n=TmF0c2k=
 ```
@@ -46,7 +52,11 @@ Get notified when they click "Yes"!
 6. Copy the access key (format: `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`)
 
 ### Add key to URL
-
+Just like the encoded name you will need to add the key as a parameter to the URL: 
+```
+<BaseURL>/?n=<encoded-name>&k=YOUR_ACCESS_KEY
+```
+This gives you the following:
 ```
 https://insytejson.github.io/valentine/?n=TmF0c2k=&k=YOUR_ACCESS_KEY
 ```
