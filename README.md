@@ -14,8 +14,11 @@ A cute interactive webpage to ask someone to be your valentine.
 ### Step 1: Encode the name via Website
 
 1. Go to https://base64.guru/converter/encode/text
-2. Enter their name under `text*`
+2. Enter the name of your significant other under `text*`
+3. Copy the encoded String
 
+**Example:**
+`TmF0c2k=`
 
 ### Step 2: Build URL
 
