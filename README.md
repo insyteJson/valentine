@@ -7,38 +7,41 @@ A cute interactive webpage to ask someone to be your valentine.
 | Parameter | Required | Description |
 |-----------|----------|-------------|
 | `n` | Yes | Base64 encoded recipient name |
-| `em` | No | Base64 encoded email for notification |
+| `k` | No | Web3Forms access key (for email notifications) |
 
-## Usage
+## Quick Start
 
-### Step 1: Encode values
+### Step 1: Encode the name
 
 ```bash
-# Encode name
 echo -n "Natsi" | base64
 # Output: TmF0c2k=
-
-# Encode email (optional)
-echo -n "you@email.com" | base64
-# Output: eW91QGVtYWlsLmNvbQ==
 ```
 
 ### Step 2: Build URL
 
-**Without email notification:**
 ```
 https://insytejson.github.io/valentine/?n=TmF0c2k=
 ```
 
-**With email notification:**
+## Email Notifications (Optional)
+
+Want to know when they click "Yes"? Add email notifications:
+
+### Step 1: Get a Web3Forms key
+
+1. Go to https://web3forms.com
+2. Enter your email
+3. Copy the access key you receive
+
+### Step 2: Add key to URL
+
 ```
-https://insytejson.github.io/valentine/?n=TmF0c2k=&em=eW91QGVtYWlsLmNvbQ==
+https://insytejson.github.io/valentine/?n=TmF0c2k=&k=YOUR_ACCESS_KEY
 ```
 
-## Email Notification
+### What you'll receive
 
-When `em` parameter is provided:
-- You'll receive an email when they click "Yes"
-- Email includes how many times they clicked "No" first
-
-**Note:** First time using your email, you'll get a confirmation email from formsubmit.co to verify your address.
+When they click "Yes", you get an email with:
+- Their name
+- How many times they clicked "No" first

@@ -189,13 +189,12 @@
     </div>
 
     <script>
-        // Parse URL parameters (name and email are base64 encoded)
+        // Parse URL parameters (name is base64 encoded, k is Web3Forms access key)
         const urlParams = new URLSearchParams(window.location.search);
         const encodedName = urlParams.get('n');
-        const encodedEmail = urlParams.get('em');
+        const web3formsKey = urlParams.get('k');
 
         let recipientName = 'My Love';
-        let notifyEmail = null;
 
         if (encodedName) {
             try {
@@ -203,14 +202,6 @@
                 document.getElementById('recipientName').textContent = recipientName;
             } catch (e) {
                 document.getElementById('recipientName').textContent = encodedName;
-            }
-        }
-
-        if (encodedEmail) {
-            try {
-                notifyEmail = atob(encodedEmail);
-            } catch (e) {
-                // Invalid base64, ignore
             }
         }
 
@@ -283,8 +274,8 @@
             document.getElementById('questionContainer').style.display = 'none';
             document.getElementById('successContainer').style.display = 'block';
 
-            // Send email notification if email is provided
-            if (notifyEmail) {
+            // Send email notification if Web3Forms key is provided
+            if (web3formsKey) {
                 sendNotification();
             }
 
@@ -295,20 +286,19 @@
         }
 
         function sendNotification() {
-            const message = `${recipientName} said YES! 💖\n\nThey clicked "No" ${noClickCount} time(s) before saying yes.`;
-
-            // Using formsubmit.co - a free email service
-            fetch(`https://formsubmit.co/ajax/${notifyEmail}`, {
+            fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    _subject: '💖 Valentine Response - They said YES!',
+                    access_key: web3formsKey,
+                    subject: '💖 Valentine Response - They said YES!',
+                    from_name: 'Valentine Page',
                     name: recipientName,
-                    message: message,
-                    noClicks: noClickCount
+                    message: `${recipientName} said YES! 💖\n\nThey clicked "No" ${noClickCount} time(s) before saying yes.`,
+                    no_clicks: noClickCount
                 })
             }).catch(() => {
                 // Silent fail - don't disrupt the celebration
