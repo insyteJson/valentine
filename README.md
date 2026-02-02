@@ -4,41 +4,54 @@ A cute interactive webpage to ask someone to be your valentine.
 
 ## URL Parameters
 
-| Parameter | Required | Description |
-|-----------|----------|-------------|
-| `n` | Yes | Base64 encoded recipient name |
-| `em` | No | Base64 encoded email for notification |
+| Parameter | Required | Encoding | Description |
+|-----------|----------|----------|-------------|
+| `n` | Yes | Base64 | Recipient name |
+| `k` | No | Plain text | Web3Forms access key |
 
-## Usage
+## Quick Start
 
-### Step 1: Encode values
+### Step 1: Encode the name
 
 ```bash
-# Encode name
 echo -n "Natsi" | base64
 # Output: TmF0c2k=
-
-# Encode email (optional)
-echo -n "you@email.com" | base64
-# Output: eW91QGVtYWlsLmNvbQ==
 ```
 
 ### Step 2: Build URL
 
-**Without email notification:**
 ```
 https://insytejson.github.io/valentine/?n=TmF0c2k=
 ```
 
-**With email notification:**
+---
+
+## Email Notifications (Optional)
+
+Get notified when they click "Yes"!
+
+### How to get a Web3Forms Access Key
+
+1. Go to https://web3forms.com
+2. Click **"Create your Access Key"**
+3. Enter a name for your form (e.g., "Valentine")
+4. Enter the webpage URL: `https://insytejson.github.io/valentine/`
+5. Click **"Create Access Key"**
+6. Copy the access key (format: `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`)
+
+### Add key to URL
+
 ```
-https://insytejson.github.io/valentine/?n=TmF0c2k=&em=eW91QGVtYWlsLmNvbQ==
+https://insytejson.github.io/valentine/?n=TmF0c2k=&k=YOUR_ACCESS_KEY
 ```
 
-## Email Notification
+**Example:**
+```
+https://insytejson.github.io/valentine/?n=TmF0c2k=&k=a1b2c3d4-e5f6-7890-abcd-ef1234567890
+```
 
-When `em` parameter is provided:
-- You'll receive an email when they click "Yes"
-- Email includes how many times they clicked "No" first
+### What you'll receive
 
-**Note:** First time using your email, you'll get a confirmation email from formsubmit.co to verify your address.
+When they click "Yes", you get an email with:
+- Their name
+- How many times they clicked "No" first
