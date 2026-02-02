@@ -14,7 +14,7 @@ https://insytejson.github.io/valentine/?n=TmF0c2kgQmF0c2k=
 
 ## Quick Start
 
-### Step 1: Encode the name via Website
+### Step 1: Encode the name
 
 1. Go to https://base64.guru/converter/encode/text
 2. Enter the name of your significant other under `text*`
