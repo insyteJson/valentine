@@ -2,6 +2,9 @@
 
 A cute interactive webpage to ask someone to be your valentine.
 
+**Example:** 
+https://insytejson.github.io/valentine/?n=TmF0c2kgQmF0c2k=
+
 ## URL Parameters
 
 | Parameter | Required | Encoding | Description |
