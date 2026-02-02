@@ -17,6 +17,12 @@ A cute interactive webpage to ask someone to be your valentine.
 echo -n "Natsi" | base64
 # Output: TmF0c2k=
 ```
+or 
+```
+Visit the following site online and enter their name under "text*"
+https://base64.guru/converter/encode/text
+```
+
 
 ### Step 2: Build URL
 
