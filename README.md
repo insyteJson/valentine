@@ -11,17 +11,17 @@ A cute interactive webpage to ask someone to be your valentine.
 
 ## Quick Start
 
-### Step 1: Encode the name
+### Step 1a: Encode the name via Terminal
 
 ```bash
 echo -n "Natsi" | base64
 # Output: TmF0c2k=
 ```
-or 
-```
-Visit the following site online and enter their name under "text*"
-https://base64.guru/converter/encode/text
-```
+
+### Step 1b: Encode the name via Website
+
+1. Go to https://base64.guru/converter/encode/text
+2. Enter their name under `text*`
 
 
 ### Step 2: Build URL
